@@ -7,6 +7,7 @@ const publicNavLinks: NavLinkType[] = [
   { name: 'Beranda', path: '/' },
   { name: 'Profil', path: '/profil' },
   { name: 'Jurusan', path: '/jurusan' },
+  { name: 'Guru', path: '/guru' },
   { name: 'Berita', path: '/berita' },
   { name: 'Agenda', path: '/agenda' },
   { name: 'Galeri', path: '/galeri' },

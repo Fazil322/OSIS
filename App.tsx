@@ -11,6 +11,7 @@ import AdminLayout from './components/layouts/AdminLayout';
 import HomePage from './pages/public/HomePage';
 import ProfilePage from './pages/public/ProfilePage';
 import JurusanPage from './pages/public/JurusanPage';
+import GuruPage from './pages/public/GuruPage'; // Import baru
 import BeritaPage from './pages/public/BeritaPage';
 import GaleriPage from './pages/public/GaleriPage';
 import PpdbPage from './pages/public/PpdbPage';
@@ -62,6 +63,7 @@ const App: React.FC = () => {
                 <Route index element={<HomePage />} />
                 <Route path="profil" element={<ProfilePage />} />
                 <Route path="jurusan" element={<JurusanPage />} />
+                <Route path="guru" element={<GuruPage />} /> {/* Route baru */}
                 <Route path="berita" element={<BeritaPage />} />
                 <Route path="berita/:id" element={<BeritaDetailPage />} />
                 <Route path="agenda" element={<AgendaPage />} /> {/* Route baru */}

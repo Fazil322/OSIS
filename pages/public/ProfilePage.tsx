@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { mockGuru } from '../../services/mockData';
 import { Guru } from '../../types';
 
@@ -45,9 +46,14 @@ const GuruCard: React.FC<{ guru: Guru }> = ({ guru }) => (
 const TenagaPendidik: React.FC = () => (
     <div className="py-16 px-6">
         <div className="container mx-auto">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Pendidik & Tenaga Kependidikan</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Pimpinan & Sebagian Pendidik</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                {mockGuru.map(guru => <GuruCard key={guru.id} guru={guru} />)}
+                {mockGuru.slice(0, 4).map(guru => <GuruCard key={guru.id} guru={guru} />)}
+            </div>
+            <div className="text-center mt-12">
+                <Link to="/guru" className="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition duration-300">
+                    Lihat Semua Guru &rarr;
+                </Link>
             </div>
         </div>
     </div>

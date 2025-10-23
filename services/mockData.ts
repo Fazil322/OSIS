@@ -3,8 +3,13 @@ import { Guru, SesiPemilihan, Agenda } from '../types';
 
 export const mockGuru: Guru[] = [
     { id: 1, name: 'Budi Santoso, S.Pd.', subject: 'Kepala Sekolah', imageUrl: 'https://picsum.photos/seed/guru1/400/400' },
-    { id: 2, name: 'Citra Lestari, M.Kom.', subject: 'Teknik Komputer & Jaringan', imageUrl: 'https://picsum.photos/seed/guru2/400/400' },
-    { id: 3, name: 'Doni Firmansyah, S.T.', subject: 'Teknik Kendaraan Ringan', imageUrl: 'https://picsum.photos/seed/guru3/400/400' },
+    { id: 2, name: 'Citra Lestari, M.Kom.', subject: 'Waka Kurikulum & Kajur TKJ', imageUrl: 'https://picsum.photos/seed/guru2/400/400' },
+    { id: 3, name: 'Doni Firmansyah, S.T.', subject: 'Waka Kesiswaan & Kajur TKR', imageUrl: 'https://picsum.photos/seed/guru3/400/400' },
+    { id: 4, name: 'Eka Wijayanti, S.Pd.', subject: 'Guru Matematika', imageUrl: 'https://picsum.photos/seed/guru4/400/400' },
+    { id: 5, name: 'Fajar Nugroho, S.Kom.', subject: 'Guru Produktif TKJ', imageUrl: 'https://picsum.photos/seed/guru5/400/400' },
+    { id: 6, name: 'Gita Permatasari, S.Pd.', subject: 'Guru Bahasa Inggris', imageUrl: 'https://picsum.photos/seed/guru6/400/400' },
+    { id: 7, name: 'Hendra Setiawan, S.T.', subject: 'Guru Produktif TKR', imageUrl: 'https://picsum.photos/seed/guru7/400/400' },
+    { id: 8, name: 'Indah Puspita, S.Pd.', subject: 'Guru Bahasa Indonesia', imageUrl: 'https://picsum.photos/seed/guru8/400/400' },
 ];
 
 export const mockAgenda: Agenda[] = [

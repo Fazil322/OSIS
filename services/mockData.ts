@@ -1,5 +1,4 @@
-
-import { Guru, SesiPemilihan, Agenda } from '../types';
+import { Guru, SesiPemilihan, Agenda, Ekstrakurikuler, Alumni } from '../types';
 
 export const mockGuru: Guru[] = [
     { id: 1, name: 'Budi Santoso, S.Pd.', subject: 'Kepala Sekolah', imageUrl: 'https://picsum.photos/seed/guru1/400/400' },
@@ -31,6 +30,57 @@ export const mockAgenda: Agenda[] = [
     date: new Date(new Date().getFullYear(), 10, 25),
     description: "Upacara dan rangkaian kegiatan untuk menghormati jasa para guru."
   }
+];
+
+export const mockEkstrakurikuler: Ekstrakurikuler[] = [
+    {
+        id: 1,
+        name: 'Pramuka',
+        description: 'Kegiatan kepanduan yang mendidik kemandirian, kerjasama, dan cinta alam.',
+        imageUrl: 'https://picsum.photos/seed/pramuka/600/400'
+    },
+    {
+        id: 2,
+        name: 'Paskibra',
+        description: 'Pasukan Pengibar Bendera yang melatih kedisiplinan, ketegasan, dan rasa nasionalisme.',
+        imageUrl: 'https://picsum.photos/seed/paskibra/600/400'
+    },
+    {
+        id: 3,
+        name: 'Futsal',
+        description: 'Mengembangkan bakat dan strategi dalam bermain sepak bola mini, serta menjaga kebugaran jasmani.',
+        imageUrl: 'https://picsum.photos/seed/futsal/600/400'
+    },
+    {
+        id: 4,
+        name: 'Rohis (Rohani Islam)',
+        description: 'Mendalami ilmu agama Islam, meningkatkan keimanan dan ketaqwaan melalui kajian rutin.',
+        imageUrl: 'https://picsum.photos/seed/rohis/600/400'
+    },
+];
+
+export const mockAlumni: Alumni[] = [
+    {
+        id: 1,
+        name: 'Rian Ardiansyah',
+        graduationYear: 2018,
+        story: 'Setelah lulus dari jurusan TKJ, saya berhasil membangun karir sebagai Network Engineer di perusahaan multinasional. Fondasi ilmu yang saya dapatkan di SMK LPPMRI 2 sangat berharga.',
+        imageUrl: 'https://picsum.photos/seed/alumni1/400/400'
+    },
+    {
+        id: 2,
+        name: 'Siti Nurhaliza',
+        graduationYear: 2019,
+        story: 'Jurusan TKR tidak hanya untuk laki-laki. Saya membuktikannya dengan menjadi kepala mekanik di salah satu bengkel ternama. Jangan pernah ragu untuk mengejar passion!',
+        imageUrl: 'https://picsum.photos/seed/alumni2/400/400'
+    },
+    {
+        id: 3,
+        name: 'Bagus Prasetyo',
+        graduationYear: 2020,
+        story: 'Ilmu dari SMK langsung saya terapkan dengan membuka usaha bengkel sendiri. Kini saya sudah memiliki beberapa karyawan dan terus berkembang. Terima kasih, guru-guruku!',
+        imageUrl: 'https://picsum.photos/seed/alumni3/400/400'
+    },
 ];
 
 

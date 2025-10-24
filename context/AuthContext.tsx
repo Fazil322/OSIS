@@ -15,7 +15,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = (password: string): boolean => {
     // In a real app, you would verify username and password with a backend.
     // For this demo, we'll use a simple hardcoded password.
-    if (password === 'admin123') {
+    if (password === 'OSISSMAKDA') {
       setIsAuthenticated(true);
       sessionStorage.setItem('isAdminAuthenticated', 'true');
       return true;

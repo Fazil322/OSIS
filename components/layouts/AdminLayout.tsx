@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { NavLink as RouterNavLink, Outlet, useNavigate } from 'react-router-dom';
 import { NavLink as NavLinkType } from '../../types';
@@ -7,7 +6,9 @@ import { useAuth } from '../../context/AuthContext';
 const adminNavLinks: NavLinkType[] = [
   { name: 'Dashboard', path: '/admin/dashboard' },
   { name: 'Manajemen Konten', path: '/admin/konten' },
-  { name: 'Manajemen Agenda', path: '/admin/agenda' },
+  { name: 'Manajemen Kalender', path: '/admin/kalender' },
+  { name: 'Manajemen Ekskul', path: '/admin/ekstrakurikuler' },
+  { name: 'Manajemen Alumni', path: '/admin/alumni' },
   { name: 'Manajemen Pemilihan', path: '/admin/pemilihan' },
 ];
 

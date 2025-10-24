@@ -1,17 +1,17 @@
-
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
 
 const BeritaDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const { getBeritaById } = useData();
+    const { berita: allBerita, getBeritaById } = useData();
     const berita = getBeritaById(Number(id));
 
     if (!berita) {
-        // Redirect to news page if article not found
         return <Navigate to="/berita" replace />;
     }
+
+    const relatedBerita = allBerita.filter(b => b.id !== berita.id).slice(0, 3);
 
     return (
         <div>
@@ -46,6 +46,25 @@ const BeritaDetailPage: React.FC = () => {
                     </div>
                 </div>
             </div>
+            
+            {relatedBerita.length > 0 && (
+                <div className="bg-gray-100 py-12">
+                    <div className="container mx-auto px-6">
+                        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Berita Terkait</h2>
+                        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                            {relatedBerita.map(item => (
+                                <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 group">
+                                    <img src={item.imageUrl} alt={item.title} className="w-full h-40 object-cover" />
+                                    <div className="p-4">
+                                        <h3 className="text-lg font-semibold text-gray-800 mb-2 h-16 group-hover:text-blue-600">{item.title}</h3>
+                                        <Link to={`/berita/${item.id}`} className="font-semibold text-sm text-blue-600 hover:underline">Baca Selengkapnya &rarr;</Link>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

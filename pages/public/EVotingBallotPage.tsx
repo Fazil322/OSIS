@@ -1,14 +1,15 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useVoting } from '../../context/VotingContext';
 import { SesiPemilihan, Kandidat } from '../../types';
+import Modal from '../../components/common/Modal';
 
 const EVotingBallotPage: React.FC = () => {
     const { activeVoterCode, validateVoterCode, castVote } = useVoting();
     const [sesi, setSesi] = useState<SesiPemilihan | null>(null);
     const [selectedKandidat, setSelectedKandidat] = useState<Kandidat | null>(null);
     const [isVoted, setIsVoted] = useState(false);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,6 +30,7 @@ const EVotingBallotPage: React.FC = () => {
                 setIsVoted(true);
             }
         }
+        setShowConfirmModal(false);
     };
 
     if (!activeVoterCode) {
@@ -76,17 +78,31 @@ const EVotingBallotPage: React.FC = () => {
             </div>
 
             {selectedKandidat && (
-                <div className="mt-12 text-center bg-white p-6 rounded-lg shadow-xl max-w-2xl mx-auto">
-                    <p className="text-lg">Anda telah memilih:</p>
-                    <h3 className="text-3xl font-bold text-blue-600 my-2">{selectedKandidat.name}</h3>
-                    <p className="text-gray-600 mb-6">Apakah Anda yakin dengan pilihan Anda? Pilihan tidak dapat diubah setelah dikonfirmasi.</p>
+                 <div className="mt-12 text-center">
                     <button
-                        onClick={handleVote}
-                        className="bg-green-600 text-white px-10 py-3 rounded-lg font-bold text-lg hover:bg-green-700 transition-colors"
+                        onClick={() => setShowConfirmModal(true)}
+                        className="bg-green-600 text-white px-10 py-3 rounded-lg font-bold text-lg hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
                     >
-                        Kirim Suara Saya
+                        Kirim Suara Saya untuk {selectedKandidat.name}
                     </button>
                 </div>
+            )}
+
+            {selectedKandidat && (
+                 <Modal isOpen={showConfirmModal} onClose={() => setShowConfirmModal(false)} title="Konfirmasi Pilihan">
+                     <div className="text-center">
+                        <p className="text-lg mb-4">Anda akan memberikan suara untuk:</p>
+                        <div className="bg-gray-100 p-4 rounded-lg inline-block">
+                            <img src={selectedKandidat.photoUrl} alt={selectedKandidat.name} className="w-24 h-24 rounded-full mx-auto mb-2"/>
+                             <h3 className="text-2xl font-bold text-blue-600">{selectedKandidat.name}</h3>
+                        </div>
+                        <p className="text-gray-600 mt-4">Pilihan ini tidak dapat diubah setelah dikonfirmasi. Apakah Anda yakin?</p>
+                     </div>
+                     <div className="flex justify-center space-x-4 mt-6">
+                        <button onClick={() => setShowConfirmModal(false)} className="bg-gray-300 text-gray-800 px-8 py-2 rounded-md font-semibold hover:bg-gray-400">Batal</button>
+                        <button onClick={handleVote} className="bg-green-600 text-white px-8 py-2 rounded-md font-semibold hover:bg-green-700">Ya, Kirim Suara</button>
+                     </div>
+                </Modal>
             )}
         </div>
     );

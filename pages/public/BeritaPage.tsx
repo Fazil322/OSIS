@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
@@ -12,8 +11,11 @@ const PageHeader: React.FC = () => (
     </div>
 );
 
-const BeritaCard: React.FC<{ berita: Berita }> = ({ berita }) => (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+const BeritaCard: React.FC<{ berita: Berita, delay: number }> = ({ berita, delay }) => (
+    <div 
+        className="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 animate-fade-in-up"
+        style={{ animationDelay: `${delay}ms` }}
+    >
         <img src={berita.imageUrl} alt={berita.title} className="w-full h-56 object-cover" />
         <div className="p-6">
             <div className="flex justify-between items-center text-sm text-gray-500 mb-2">
@@ -52,8 +54,8 @@ const BeritaPage: React.FC = () => {
                         />
                     </div>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {filteredBerita.map(item => (
-                            <BeritaCard key={item.id} berita={item} />
+                        {filteredBerita.map((item, index) => (
+                            <BeritaCard key={item.id} berita={item} delay={index * 100} />
                         ))}
                     </div>
                 </div>

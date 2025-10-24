@@ -1,7 +1,6 @@
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { Berita, Agenda } from '../types';
-import { mockAgenda } from '../services/mockData';
+import { Berita, Agenda, Ekstrakurikuler, Alumni } from '../types';
+import { mockAgenda, mockEkstrakurikuler, mockAlumni } from '../services/mockData';
 
 const initialBerita: Berita[] = [
   {
@@ -28,13 +27,21 @@ const initialBerita: Berita[] = [
 interface DataContextType {
   berita: Berita[];
   agenda: Agenda[];
+  ekstrakurikuler: Ekstrakurikuler[];
+  alumni: Alumni[];
   addBerita: (berita: Omit<Berita, 'id'|'date'|'imageUrl'|'excerpt'>) => void;
   updateBerita: (updatedBerita: Berita) => void;
   deleteBerita: (id: number) => void;
+  getBeritaById: (id: number) => Berita | undefined;
   addAgenda: (agenda: Omit<Agenda, 'id'>) => void;
   updateAgenda: (updatedAgenda: Agenda) => void;
   deleteAgenda: (id: number) => void;
-  getBeritaById: (id: number) => Berita | undefined;
+  addEkstrakurikuler: (ekskul: Omit<Ekstrakurikuler, 'id'>) => void;
+  updateEkstrakurikuler: (updatedEkskul: Ekstrakurikuler) => void;
+  deleteEkstrakurikuler: (id: number) => void;
+  addAlumni: (alumni: Omit<Alumni, 'id'>) => void;
+  updateAlumni: (updatedAlumni: Alumni) => void;
+  deleteAlumni: (id: number) => void;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -42,6 +49,8 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [berita, setBerita] = useState<Berita[]>(initialBerita);
   const [agenda, setAgenda] = useState<Agenda[]>(mockAgenda);
+  const [ekstrakurikuler, setEkstrakurikuler] = useState<Ekstrakurikuler[]>(mockEkstrakurikuler);
+  const [alumni, setAlumni] = useState<Alumni[]>(mockAlumni);
 
   const getBeritaById = (id: number) => berita.find(b => b.id === id);
 
@@ -77,8 +86,49 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setAgenda(prev => prev.filter(a => a.id !== id));
   };
 
+  const addEkstrakurikuler = (newEkskulData: Omit<Ekstrakurikuler, 'id'>) => {
+    const newEkskul: Ekstrakurikuler = {
+      ...newEkskulData,
+      id: Date.now(),
+      imageUrl: newEkskulData.imageUrl || `https://picsum.photos/seed/ekskul${Date.now()}/600/400`
+    };
+    setEkstrakurikuler(prev => [newEkskul, ...prev]);
+  };
+
+  const updateEkstrakurikuler = (updatedEkskul: Ekstrakurikuler) => {
+    setEkstrakurikuler(prev => prev.map(e => e.id === updatedEkskul.id ? updatedEkskul : e));
+  };
+
+  const deleteEkstrakurikuler = (id: number) => {
+    setEkstrakurikuler(prev => prev.filter(e => e.id !== id));
+  };
+
+  const addAlumni = (newAlumniData: Omit<Alumni, 'id'>) => {
+    const newAlumni: Alumni = {
+        ...newAlumniData,
+        id: Date.now(),
+        imageUrl: newAlumniData.imageUrl || `https://picsum.photos/seed/alumni${Date.now()}/400/400`
+    };
+    setAlumni(prev => [newAlumni, ...prev]);
+  };
+
+  const updateAlumni = (updatedAlumni: Alumni) => {
+    setAlumni(prev => prev.map(a => a.id === updatedAlumni.id ? updatedAlumni : a));
+  };
+
+  const deleteAlumni = (id: number) => {
+    setAlumni(prev => prev.filter(a => a.id !== id));
+  };
+
+
   return (
-    <DataContext.Provider value={{ berita, agenda, addBerita, updateBerita, deleteBerita, getBeritaById, addAgenda, updateAgenda, deleteAgenda }}>
+    <DataContext.Provider value={{ 
+        berita, agenda, ekstrakurikuler, alumni,
+        addBerita, updateBerita, deleteBerita, getBeritaById, 
+        addAgenda, updateAgenda, deleteAgenda, 
+        addEkstrakurikuler, updateEkstrakurikuler, deleteEkstrakurikuler,
+        addAlumni, updateAlumni, deleteAlumni
+    }}>
       {children}
     </DataContext.Provider>
   );

@@ -1,4 +1,3 @@
-
 export interface NavLink {
   name: string;
   path: string;
@@ -25,6 +24,21 @@ export interface Guru {
   id: number;
   name: string;
   subject: string;
+  imageUrl: string;
+}
+
+export interface Alumni {
+  id: number;
+  name: string;
+  graduationYear: number;
+  story: string;
+  imageUrl: string;
+}
+
+export interface Ekstrakurikuler {
+  id: number;
+  name: string;
+  description: string;
   imageUrl: string;
 }
 
